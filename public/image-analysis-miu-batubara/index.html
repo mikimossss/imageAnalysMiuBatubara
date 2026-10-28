@@ -3681,5 +3681,106 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
+<style>
+/* === PERBAIKAN LAYOUT PERMANEN === */
+
+body.layout-fixed .container {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+body.layout-fixed .content {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    box-sizing: border-box;
+}
+
+body.layout-fixed .sidebar-panel {
+    flex: 0 0 380px !important;
+    width: 380px !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+body.layout-fixed .main-panel {
+    flex: 1 1 0% !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+}
+
+body.layout-fixed .container > footer {
+    flex: 0 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Pastikan konten di dalam panel tidak melampaui panel */
+body.layout-fixed .main-panel img,
+body.layout-fixed .main-panel canvas,
+body.layout-fixed .main-panel video {
+    max-width: 100%;
+}
+
+/* Tampilan tablet dan HP */
+@media (max-width: 768px) {
+    body.layout-fixed .content {
+        flex-direction: column !important;
+    }
+
+    body.layout-fixed .sidebar-panel {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    body.layout-fixed .main-panel {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: none !important;
+    }
+}
+</style>
+
+<script>
+(function fixPageLayout() {
+    const container = document.querySelector(".container");
+    const content = document.querySelector(".content");
+    const sidebar = document.querySelector(".sidebar-panel");
+    const main = document.querySelector(".main-panel");
+    const footer = document.querySelector("footer");
+
+    // Hentikan perbaikan jika elemen utama tidak ditemukan.
+    if (!container || !content || !sidebar || !main) {
+        console.warn(
+            "Layout fix: elemen utama tidak ditemukan."
+        );
+        return;
+    }
+
+    // Pastikan sidebar dan panel utama sejajar di dalam content.
+    content.append(sidebar, main);
+
+    // Letakkan footer sebagai anak langsung container.
+    if (footer && footer.parentElement !== container) {
+        container.appendChild(footer);
+    }
+
+    // Aktifkan CSS perbaikan layout.
+    document.body.classList.add("layout-fixed");
+
+    console.log("Layout fix berhasil diterapkan.");
+})();
+</script>
 </body>
 </html>
