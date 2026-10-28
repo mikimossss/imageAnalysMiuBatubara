@@ -1436,7 +1436,7 @@ footer {
                     <details class="collapsible-panel stats-panel" id="circleStatsDetails">
                         <summary>📈 Detection Statistics</summary>
                         <div class="stats-section" style="margin-top: 0;">
-                            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffc107;">
+                            <div style="background: #16385E; color: #FFFFFF; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #5B9BD5;">
                                 <strong>📖 Metrics Explained:</strong>
                                 <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
                                     <li><strong>Radius:</strong> Distance from center to edge of detected circle (in pixels)</li>
@@ -3682,6 +3682,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+/* Metrics Explained - Detection Statistics */
+#circleStatsDetails .stats-section > div[style*="border-left"] {
+    background: #16385E !important;
+    color: #FFFFFF !important;
+    border-left-color: #5B9BD5 !important;
+}
+
+#circleStatsDetails .stats-section > div[style*="border-left"] strong,
+#circleStatsDetails .stats-section > div[style*="border-left"] li {
+    color: #FFFFFF !important;
+}
 <style>
 /* === PERBAIKAN LAYOUT PERMANEN === */
 
