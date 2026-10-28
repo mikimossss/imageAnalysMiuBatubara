@@ -3636,5 +3636,50 @@ footer {
         })();
     </script>
     <script src="pdf_exporter.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".container");
+    const content = document.querySelector(".content");
+    const sidebar = document.querySelector(".sidebar-panel");
+    const main = document.querySelector(".main-panel");
+    const footer = document.querySelector("footer");
+
+    if (!container || !content || !sidebar || !main) {
+        console.error("Layout elements not found.");
+        return;
+    }
+
+    // Pastikan sidebar dan panel hasil menjadi saudara langsung.
+    content.appendChild(sidebar);
+    content.appendChild(main);
+
+    // Pastikan footer berada di bawah area konten.
+    if (footer) {
+        container.appendChild(footer);
+    }
+
+    Object.assign(content.style, {
+        display: "flex",
+        flexDirection: "row",
+        flex: "1 1 auto",
+        width: "100%",
+        minWidth: "0",
+        minHeight: "0"
+    });
+
+    Object.assign(sidebar.style, {
+        flex: "0 0 380px",
+        width: "380px",
+        minWidth: "0"
+    });
+
+    Object.assign(main.style, {
+        flex: "1 1 0%",
+        width: "auto",
+        minWidth: "0",
+        minHeight: "0"
+    });
+});
+</script>
 </body>
 </html>
